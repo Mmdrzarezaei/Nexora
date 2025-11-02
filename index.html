@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Children Toys Store</title>
+<meta name="description" content="Buy the best children toys online. Safe and fun toys for kids aged 3 to 12.">
+<style>
+  body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f2f2f2; }
+  header { background:#8ab6d6; padding:15px; text-align:center; color:white; }
+  h1 { margin:0; font-size:24px; }
+  .container { padding:15px; display:grid; grid-template-columns:1fr 1fr; gap:15px; }
+  .product { background:white; border-radius:10px; padding:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+  .product img { width:100%; border-radius:10px; }
+  .product h2 { margin:10px 0 5px; font-size:18px; }
+  .product p { font-size:14px; margin:0 0 10px; }
+  .product button { background:#f28b82; color:white; border:none; padding:10px; border-radius:5px; width:100%; font-size:16px; cursor:pointer; }
+  #formContainer { display:none; padding:15px; }
+  form { background:white; border-radius:10px; padding:15px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+  input, textarea { width:100%; padding:10px; margin-bottom:10px; border-radius:5px; border:1px solid #ccc; }
+  input[type="submit"] { background:#8ab6d6; color:white; border:none; cursor:pointer; }
+  @media(max-width:600px){
+    .container { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Children Toys Store</h1>
+</header>
+
+<div class="container" id="products">
+  <!-- 10 Sample Products -->
+  <div class="product">
+    <img src="https://via.placeholder.com/400x300.png?text=Toy+1" alt="Cute Toy 1">
+    <h2>Cute Toy 1</h2>
+    <p>Fun toy for kids aged 3+</p>
+    <button onclick="buyProduct('Cute Toy 1', '15 USDT')">Buy Now</button>
+  </div>
+  <div class="product">
+    <img src="https://via.placeholder.com/400x300.png?text=Toy+2" alt="Cute Toy 2">
+    <h2>Cute Toy 2</h2>
+    <p>Educational puzzle for toddlers</p>
+    <button onclick="buyProduct('Cute Toy 2', '20 USDT')">Buy Now</button>
+  </div>
+  <div class="product">
+    <img src="https://via.placeholder.com/400x300.png?text=Toy+3" alt="Cute Toy 3">
+    <h2>Cute Toy 3</h2>
+    <p>Soft plush toy for kids</p>
+    <button onclick="buyProduct('Cute Toy 3', '12 USDT')">Buy Now</button>
+  </div>
+  <div class="product">
+    <img src="https://via.placeholder.com/400x300.png?text=Toy+4" alt="Cute Toy 4">
+    <h2>Cute Toy 4</h2>
+    <p>Interactive learning toy</p>
+    <button onclick="buyProduct('Cute Toy 4', '18 USDT')">Buy Now</button>
+  </div>
+  <div class="product">
+    <img src="https://via.placeholder.com/400x300.png?text=Toy+5" alt="Cute Toy 5">
+    <h2>Cute Toy 5</h2>
+    <p>Colorful building blocks</p>
+    <button onclick="buyProduct('Cute Toy 5', '22 USDT')">Buy Now</button>
+  </div>
+  <div class="product">
+    <img src="https://via.placeholder.com/400x300.png?text=Toy+6" alt="Cute Toy 6">
+    <h2>Cute Toy 6</h2>
+    <p>Fun outdoor game</p>
+    <button onclick="buyProduct('Cute Toy 6', '25 USDT')">Buy Now</button>
+  </div>
+  <div class="product">
+    <img src="https://via.placeholder.com/400x300.png?text=Toy+7" alt="Cute Toy 7">
+    <h2>Cute Toy 7</h2>
+    <p>Educational board game</p>
+    <button onclick="buyProduct('Cute Toy 7', '19 USDT')">Buy Now</button>
+  </div>
+  <div class="product">
+    <img src="https://via.placeholder.com/400x300.png?text=Toy+8" alt="Cute Toy 8">
+    <h2>Cute Toy 8</h2>
+    <p>Soft sensory toy</p>
+    <button onclick="buyProduct('Cute Toy 8', '14 USDT')">Buy Now</button>
+  </div>
+  <div class="product">
+    <img src="https://via.placeholder.com/400x300.png?text=Toy+9" alt="Cute Toy 9">
+    <h2>Cute Toy 9</h2>
+    <p>Fun learning cards</p>
+    <button onclick="buyProduct('Cute Toy 9', '16 USDT')">Buy Now</button>
+  </div>
+  <div class="product">
+    <img src="https://via.placeholder.com/400x300.png?text=Toy+10" alt="Cute Toy 10">
+    <h2>Cute Toy 10</h2>
+    <p>Colorful stacking toys</p>
+    <button onclick="buyProduct('Cute Toy 10', '21 USDT')">Buy Now</button>
+  </div>
+</div>
+
+<div class="container" id="formContainer">
+  <h2>Complete Your Order</h2>
+  <form id="orderForm" onsubmit="submitOrder(event)">
+    <label>Product:</label>
+    <input type="text" id="productName" readonly>
+    <label>Amount:</label>
+    <input type="text" id="productAmount" readonly>
+    <label>Your Wallet Address:</label>
+    <input type="text" id="userWallet" placeholder="Enter your wallet address" required>
+    <label>Transaction ID:</label>
+    <input type="text" id="txId" placeholder="Enter your transaction ID" required>
+    <label>Your Email or Contact:</label>
+    <input type="text" id="contactInfo" placeholder="Email or WhatsApp number" required>
+    <input type="submit" value="Submit Order">
+  </form>
+</div>
+
+<script>
+const trustWalletAddress = 0x3cf997594461b79513a89094452431bcc2ffd115
+
+function buyProduct(name, amount){
+  // هشدار پرداخت
+  alert(`Send ${amount} to this wallet: ${0x3cf997594461b79513a89094452431bcc2ffd115}`);
+  // مخفی کردن محصولات و نمایش فرم
+  document.getElementById('products').style.display = 'none';
+  document.getElementById('formContainer').style.display = 'block';
+  document.getElementById('productName').value = name;
+  document.getElementById('productAmount').value = amount;
+}
+
+function submitOrder(e){
+  e.preventDefault();
+  const orderData = {
+    product: document.getElementById('productName').value,
+    amount: document.getElementById('productAmount').value,
+    wallet: document.getElementById('userWallet').value,
+    txId: document.getElementById('txId').value,
+    contact: document.getElementById('contactInfo').value
+  };
+  console.log(orderData);
+  alert('Thank you! Your order has been submitted. We will contact you soon.');
+  document.getElementById('orderForm').reset();
+  document.getElementById('formContainer').style.display = 'none';
+  document.getElementById('products').style.display = 'grid';
+}
+</script>
+
+</body>
+</html>
