@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>BrightKids Toys — Fun & Safe Toys for Kids | Fast Shipping US/CA</title>
+<meta name="description" content="BrightKids Toys: curated, safe & bestselling children toys. Fast shipping to USA & Canada. Secure checkout & 30-day returns." />
+<link rel="canonical" href="https://yourname.github.io/brightkids" />
+<!-- Minimal font load (optional) -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--accent:#ff6b6b;--muted:#6b7280;--bg:#f7fafc;--card:#fff}
+  *{box-sizing:border-box}
+  body{font-family:Inter,system-ui,Arial,Helvetica,sans-serif;margin:0;background:var(--bg);color:#111}
+  .wrap{max-width:1100px;margin:22px auto;padding:18px}
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#ffd7d9,#ff9aa2);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
+  h1{margin:0;font-size:20px}
+  p.lead{margin:6px 0;color:var(--muted)}
+  /* Search & filters (kept simple) */
+  .controls{display:flex;gap:8px;align-items:center;margin-top:14px;flex-wrap:wrap}
+  .search{flex:1;min-width:200px;padding:10px;border-radius:10px;border:1px solid #e6e6e9}
+  .btn-ghost{background:#fff;border:1px solid #e6e6e9;padding:10px 12px;border-radius:10px;cursor:pointer}
+  /* Product grid */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:20px}
+  .card{background:var(--card);border-radius:12px;padding:12px;box-shadow:0 6px 18px rgba(15,23,42,0.06);display:flex;flex-direction:column;gap:10px;transition:transform .12s}
+  .card:hover{transform:translateY(-6px)}
+  .product-image{width:100%;aspect-ratio:1/1;border-radius:8px;object-fit:cover}
+  .title{font-weight:600;font-size:15px;margin:0}
+  .price{color:var(--accent);font-weight:700}
+  .desc{font-size:13px;color:var(--muted);margin:6px 0 0}
+  .cta{margin-top:auto}
+  .buy{display:inline-block;background:var(--accent);color:#fff;padding:10px 12px;border-radius:10px;text-decoration:none;font-weight:700;border:none;cursor:pointer;width:100%}
+  .secondary{background:#fff;border:1px solid #e6e6e9;color:#111;padding:9px;border-radius:10px;width:100%;cursor:pointer}
+  /* Modal */
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.35);display:none;align-items:center;justify-content:center;padding:20px;z-index:60}
+  .modal{width:100%;max-width:640px;background:#fff;border-radius:12px;padding:18px;box-shadow:0 14px 40px rgba(2,6,23,0.2)}
+  .modal h2{margin:0 0 8px}
+  .field{margin-top:10px}
+  input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #eee}
+  .row{display:flex;gap:8px}
+  .note{font-size:13px;color:var(--muted);margin-top:8px}
+  /* footer */
+  footer{text-align:center;color:var(--muted);font-size:13px;margin:30px 0}
+  @media(max-width:600px){
+    header{flex-direction:column;align-items:flex-start}
+    .controls{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<main class="wrap" id="main">
+  <header>
+    <div class="brand">
+      <div class="logo">BK</div>
+      <div>
+        <h1>BrightKids Toys</h1>
+        <p class="lead">Safe, fun & top-selling children toys — shipped to USA & Canada</p>
+      </div>
+    </div>
+
+    <div class="controls" aria-hidden="false">
+      <input id="search" class="search" placeholder="Search toys (e.g. wooden blocks, STEM kits)"/>
+      <button id="filterButton" class="btn-ghost">Filter: Best Sellers</button>
+    </div>
+  </header>
+
+  <!-- Product grid -->
+  <section class="grid" id="products" aria-live="polite">
+    <!-- Product cards: copy-block repeated for each product -->
+    <!-- PRODUCT 1 -->
+    <article class="card" data-id="p1" data-title="Wooden Stack Blocks - Montessori" data-price="29.99" data-sku="WB-001">
+      <img class="product-image" loading="lazy" src="https://images.pexels.com/photos/1050285/pexels-photo-1050285.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Wooden Stack Blocks - Montessori">
+      <h3 class="title">Wooden Stack Blocks — Montessori</h3>
+      <div class="desc">Eco-friendly solid wood blocks for toddlers. Promotes motor skills & creativity.</div>
+      <div class="price">$29.99</div>
+      <div class="cta">
+        <button class="buy" data-id="p1">Buy Now</button>
+        <button class="secondary" onclick="openDetails('p1')">View Details</button>
+      </div>
+    </article>
+
+    <!-- PRODUCT 2 -->
+    <article class="card" data-id="p2" data-title="Interactive STEM Robot Kit" data-price="69.99" data-sku="STEM-101">
+      <img class="product-image" loading="lazy" src="https://images.pexels.com/photos/256381/pexels-photo-256381.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Interactive STEM Robot Kit">
+      <h3 class="title">Interactive STEM Robot Kit</h3>
+      <div class="desc">Build & code your first robot — perfect for ages 8+. Encourages logical thinking.</div>
+      <div class="price">$69.99</div>
+      <div class="cta">
+        <button class="buy" data-id="p2">Buy Now</button>
+        <button class="secondary" onclick="openDetails('p2')">View Details</button>
+      </div>
+    </article>
+
+    <!-- PRODUCT 3 -->
+    <article class="card" data-id="p3" data-title="Soft Plush Learning Toy - Musical" data-price="24.99" data-sku="PL-330">
+      <img class="product-image" loading="lazy" src="https://images.pexels.com/photos/374071/pexels-photo-374071.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Soft Plush Learning Toy">
+      <h3 class="title">Soft Plush Learning Toy — Musical</h3>
+      <div class="desc">Plush toy with built-in songs and light signals — great for infants.</div>
+      <div class="price">$24.99</div>
+      <div class="cta">
+        <button class="buy" data-id="p3">Buy Now</button>
+        <button class="secondary" onclick="openDetails('p3')">View Details</button>
+      </div>
+    </article>
+
+    <!-- PRODUCT 4 -->
+    <article class="card" data-id="p4" data-title="Bath Time Foam Letters & Numbers" data-price="14.99" data-sku="BATH-22">
+      <img class="product-image" loading="lazy" src="https://images.pexels.com/photos/3661379/pexels-photo-3661379.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Bath Foam Letters">
+      <h3 class="title">Bath Foam Letters & Numbers</h3>
+      <div class="desc">Safe EVA foam — make learning fun during bath time. Ages 2+</div>
+      <div class="price">$14.99</div>
+      <div class="cta">
+        <button class="buy" data-id="p4">Buy Now</button>
+        <button class="secondary" onclick="openDetails('p4')">View Details</button>
+      </div>
+    </article>
+  </section>
+
+  <footer>
+    <p>© 2025 BrightKids Toys • Fast shipping to USA & Canada • 30-day returns</p>
+  </footer>
+</main>
+
+<!-- Modal / Checkout overlay -->
+<div id="overlay" class="overlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal" role="document">
+    <button onclick="closeOverlay()" style="float:right;background:#eee;border:0;padding:6px;border-radius:6px;cursor:pointer">✕</button>
+    <h2 id="modalTitle">Order</h2>
+    <div id="modalBody">
+      <p id="modalDesc">Complete your order</p>
+      <form id="checkoutForm" onsubmit="return handleCheckout(event)">
+        <div class="field">
+          <label>Full name</label>
+          <input id="fullName" name="name" required />
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input id="email" name="email" type="email" required />
+        </div>
+        <div class="field">
+          <label>Shipping address</label>
+          <input id="address" name="address" required />
+        </div>
+        <div class="field row">
+          <div style="flex:1"><label>City</label><input id="city" name="city" required/></div>
+          <div style="flex:1"><label>Postal/Zip</label><input id="zip" name="zip" required/></div>
+        </div>
+        <div class="field">
+          <label>Quantity</label>
+          <select id="qty" name="qty"><option value="1">1</option><option value="2">2</option><option value="3">3</option></select>
+        </div>
+        <div class="field">
+          <label>Note (optional)</label>
+          <textarea id="note" name="note" rows="2"></textarea>
+        </div>
+        <div class="field">
+          <button type="submit" class="buy">Proceed to Payment</button>
+        </div>
+        <p class="note">We will charge your card or crypto after you confirm on the payment page. Free shipping on orders over $50.</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ----- Minimal JS: product handling, modal, redirect to payment ----- */
+/* Replace PAYMENT_BASE_URL with your payment link (PayPal/Payoneer/Wed2 checkout) */
+const PAYMENT_BASE_URL = "https://example-payment-link.com/checkout?"; // << REPLACE THIS
+
+function openDetails(id){
+  const card = document.querySelector('[data-id="'+id+'"]');
+  const title = card.dataset.title;
+  const price = card.dataset.price;
+  const sku = card.dataset.sku;
+  document.getElementById('modalTitle').textContent = title + " — $" + price;
+  document.getElementById('modalDesc').textContent = card.querySelector('.desc').textContent;
+  document.getElementById('overlay').style.display = 'flex';
+  document.getElementById('overlay').setAttribute('aria-hidden','false');
+  // store selected product
+  window.selectedProduct = {id, title, price, sku};
+}
+function closeOverlay(){
+  document.getElementById('overlay').style.display = 'none';
+  document.getElementById('overlay').setAttribute('aria-hidden','true');
+}
+document.querySelectorAll('.buy').forEach(b=>{
+  b.addEventListener('click', (e)=>{
+    const id = e.currentTarget.getAttribute('data-id');
+    if(id) openDetails(id);
+  });
+});
+
+/* On form submit -> build payment url with product info and redirect */
+function handleCheckout(ev){
+  ev.preventDefault();
+  const p = window.selectedProduct || {};
+  const form = ev.target;
+  const data = {
+    name: form.name.value || document.getElementById('fullName').value,
+    email: form.email.value,
+    address: form.address.value,
+    city: form.city.value,
+    zip: form.zip.value,
+    qty: form.qty.value,
+    sku: p.sku || '',
+    product: p.title || ''
+  };
+  // Build a query string (URL encode)
+  const qs = new URLSearchParams(data).toString();
+  // Redirect to payment link (replace base with your actual checkout handler)
+  const final = PAYMENT_BASE_URL + qs;
+  // For debug: open in a new tab
+  window.open(final, '_blank');
+  // optionally close modal
+  closeOverlay();
+  return false;
+}
+
+/* Minimal search */
+document.getElementById('search').addEventListener('input', function(){
+  const q = this.value.toLowerCase();
+  document.querySelectorAll('.card').forEach(c=>{
+    const t = c.dataset.title.toLowerCase();
+    if(t.includes(q)) c.style.display = '';
+    else c.style.display = 'none';
+  });
+});
+</script>
+
+<!-- JSON-LD Product list for SEO -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"Product",
+      "name":"Wooden Stack Blocks - Montessori",
+      "image":"https://images.pexels.com/photos/1050285/pexels-photo-1050285.jpeg",
+      "description":"Eco-friendly solid wood blocks for toddlers. Promotes motor skills & creativity.",
+      "sku":"WB-001",
+      "brand":{"@type":"Brand","name":"BrightKids"},
+      "offers":{"@type":"Offer","priceCurrency":"USD","price":"29.99","availability":"https://schema.org/InStock"}
+    },
+    {
+      "@type":"Product",
+      "name":"Interactive STEM Robot Kit",
+      "image":"https://images.pexels.com/photos/256381/pexels-photo-256381.jpeg",
+      "description":"Build & code your first robot — perfect for ages 8+.",
+      "sku":"STEM-101",
+      "brand":{"@type":"Brand","name":"BrightKids"},
+      "offers":{"@type":"Offer","priceCurrency":"USD","price":"69.99","availability":"https://schema.org/InStock"}
+    }
+  ]
+}
+</script>
+
+</body>
+</html>
